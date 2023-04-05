@@ -1,9 +1,9 @@
 #!/usr/bin/python3
-''' Minimum Operations Algorithm in python '''
+'''Minimum Operations Algorithm in python '''
 
 
 def minOperations(n):
-    ''' calculates number operations '''
+    '''calculates number operations '''
     # all outputs have at least 2 letters
     total_operation = 0
     for root_value in range(2, n+1):
@@ -13,6 +13,8 @@ def minOperations(n):
             total_operation += root_value
             # set n to the value of remainder
             n /= root_value
+        # if n equal to 1 terminate the while loop execution
         if n == 1:
             break
+    # return total number of operations
     return total_operation
