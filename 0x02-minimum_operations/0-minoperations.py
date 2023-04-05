@@ -3,15 +3,18 @@
 
 
 def minOperations(n):
-    if n == 1:
-        return 0
-    count = 0
-    numH = 1
-    while numH < n:
-        if n % numH == 0:
-            count += n // numH - 1
-            numH = n // (n // numH)
-        else:
-            numH *= 2
-            count += 1
-    return count if numH == n else 0
+    '''calculates number operations '''
+    total_operation = 0
+    # all outputs have at least 2 letters
+    for root_value in range(2, n+1):
+        # if n modules by root_value
+        while not n % root_value:
+            # add total_operation and root_value
+            total_operation += root_value
+            # set n to the value of remainder
+            n /= root_value
+        # if n equal to 1 terminate the while loop execution
+        if n == 1:
+            break
+    # return total number of operations
+    return total_operation
