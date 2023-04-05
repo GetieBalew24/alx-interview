@@ -9,11 +9,11 @@ def minOperations(n):
     root_value = 2
     while n > 1:
         # if n modules by root_value
-        while not n % total_value:
+        while not n % root_value:
             # add total_operation and root_value
             total_operation += root_value
             # set n to the valoe of remainder
             n /= root_value
         # increment root by one until n lessthan 0
-        total_value += 1
+        root_value += 1
     return total_operation
