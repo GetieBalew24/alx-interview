@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-""" Module for 0-minoperationsIn a text file.
-"""
+''' Module for 0-minoperationsIn a text file. '''
 
 
 def minOperations(n):
-    """ methods to calculate the fewest number of operations
-    """
+    ''' methods to calculate the fewest number of operations'''
 
     # all outputs should be at least 2 char: (min, Copy All => Paste)
     if (n < 2):
