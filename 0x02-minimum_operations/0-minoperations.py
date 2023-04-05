@@ -4,6 +4,8 @@
 
 def minOperations(n):
     ''' calculates the fewest number of operations '''
+
+    
     total_operation = 0
     total_value = 2
     while n > 1:
