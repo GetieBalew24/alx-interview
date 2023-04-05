@@ -1,27 +1,20 @@
 #!/usr/bin/python3
-'''Generate the minimum operations
-'''
+'''Minimum Operations Algorithm in python '''
 
 
 def minOperations(n):
-    '''Computes the fewest number of operations needed to result
-    in exactly n H characters.
-    '''
-    if not isinstance(n, int):
-        return 0
-    num_ops = 0
-    copy = 0
-    paste = 1
-    while paste < n:
-        if copy == 0:
-            copy = paste
-            paste += copy
-            num_ops += 2
-        elif n - paste > 0 and (n - paste) % paste == 0:
-            copy = paste
-            paste += copy
-            num_ops += 2
-        elif copy > 0:
-            paste += copy
-            num_ops += 1
-    return num_ops
+    '''calculates number operations '''
+    total_operation = 0
+    # all outputs have at least 2 letters
+    for root_value in range(2, n+1):
+        # if n modules by root_value
+        while not n % root_value:
+            # add total_operation and root_value
+            total_operation += root_value
+            # set n to the value of remainder
+            n /= root_value
+        # if n equal to 1 terminate the while loop execution
+        if n == 1:
+            break
+    # return total number of operations
+    return total_operation
