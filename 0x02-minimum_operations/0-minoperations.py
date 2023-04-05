@@ -4,8 +4,8 @@
 
 def minOperations(n):
     '''calculates number operations '''
-    # all outputs have at least 2 letters
     total_operation = 0
+    # all outputs have at least 2 letters
     for root_value in range(2, n+1):
         # if n modules by root_value
         while not n % root_value:
