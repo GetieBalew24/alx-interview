@@ -1,11 +1,9 @@
 #!/usr/bin/python3
-'''0x02. Minimum Operations Algorithm Python in a text
-'''
+''' Minimum Operations Algorithm Python in a text '''
 
 
 def minOperations(n):
-    '''calculates the fewest number of operations needed.
-    '''
+    ''' calculates the fewest number of operations '''
     total_operation = 0
     total_value = 2
     while n > 1:
