@@ -1,9 +1,6 @@
 #!/usr/bin/python3
-""" Module for 0-minoperationsIn a text file, there is a single character.
-    Your text editor can execute only two operations in this file: Copy 
-    All and Paste. Given a number n, write a method that calculates the 
-    fewest number of operations needed to result in exactly 
-    n H characters in the file."""
+""" Module for 0-minoperationsIn a text file.
+"""
 
 
 def minOperations(n):
