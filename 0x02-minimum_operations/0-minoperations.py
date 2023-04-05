@@ -1,20 +1,16 @@
 #!/usr/bin/python3
-"""
-In a text file, there is a single character H.
-Your text editor can execute only two operations in this file:
-Copy All and Paste.
-Given a number n, write a method that calculates the fewest
-number of operations needed to result in exactly n H characters in the file.
-"""
+'''0x02. Minimum Operations Algorithm Python in a text file
+'''
 
 
 def minOperations(n):
-    """Calculate fewest no. of operations needed to result in n H characters"""
-    t = 0
-    m = 2
+    '''calculates the fewest number of operations needed.
+    '''
+    total_operation = 0
+    total_value = 2
     while n > 1:
-        while not n % m:
-            t += m
-            n /= m
-        m += 1
-    return t
+        while not n % total_value:
+            total_operation += total_value
+            n /= total_value
+        total_value += 1
+    return total_operation
