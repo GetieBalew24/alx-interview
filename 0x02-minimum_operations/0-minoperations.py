@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''Minimum Operations Algorithm in python '''
+'''Minimum Operations Algorithm in python'''
 
 
 def minOperations(n):
@@ -13,7 +13,7 @@ def minOperations(n):
             total_operation += root_value
             # set n to the value of remainder
             n /= root_value
-        # if n equal to 1 terminate the while loop execution
+        # if n equal to 1 terminate the while
         if n == 1:
             break
     # return total number of operations
