@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""  a script that reads stdin line by line and computes metrics
-Input format: <IP Address> - [<date>] "GET /projects/260 HTTP/1.1"
-<status code> <file size>
+"""  a script that reads stdin line by line 
 """
 import sys
 
@@ -25,16 +23,7 @@ def print_message(dictonary_source, file_size):
 file_size = 0
 file_code = 0
 counter = 0
-dictonary_source = {
-        '200': 0,
-        '301': 0,
-        '400': 0,
-        '401': 0,
-        '403': 0,
-        '404': 0,
-        '405': 0,
-        '500': 0,
-    }
+dictonary_source = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
 try:
     for line in sys.stdin:
         parsed_line = line.split() 
