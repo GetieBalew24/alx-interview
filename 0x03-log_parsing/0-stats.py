@@ -1,64 +1,46 @@
 #!/usr/bin/python3
-"""A script that reads stdin line by line and computes metrics
-After every 10 lines and/or a keyboard interruption (CTRL + C), 
-print these statistics from the beginning:
+"""  a script that reads stdin line by line and computes metrics
+Input format: <IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
 """
-import re
+import sys
 
 
-def extract_input_HTTP_request(input_line):
-    """ Extracts an HTTP request log.
+def print_message(dictonary_source, file_size):
     """
-    extr_input = (r'\s*(?P<ip>\S+)\s*', r'\s*\[(?P<date>\d+\-\d+\-\d+ \d+:\d+:\d+\.\d+)\]',r'\s*"(?P<request>[^"]*)"\s*',
-        r'\s*(?P<status_code>\S+)', r'\s*(?P<file_size>\d+)' )
-    information = {
-        'status_code': 0,
-        'file_size': 0,
-    }
-    log_format = '{}\\-{}{}{}{}\\s*'.format(extr_input[0], extr_input[1], extr_input[2], extr_input[3], extr_input[4])
-    res_match = re.fullmatch(log_format, input_line)
-    if res_match is not None:
-        statusCode = res_match.group('statusCode')
-        fileSize = int(res_match.group('fileSize'))
-        information['statusCode'] = statusCode
-        information['fileSize'] = fileSize
-    return information
-def print_statistics_http(total_size, status_codes):
-    """ display the statistics of 
-    the HTTP request log.
-    """
-    print('File size: {:d}'.format(total_size), flush=True)
-    for status_code in sorted(status_codes.keys()):
-        num = status_codes.get(status_code, 0)
-        if num > 0:
-            print('{:s}: {:d}'.format(status_code, num), flush=True)
-def update_metrics_retrive(line, total_sizes, status_codes):
-    """ Metrics from a given HTTP request log.
+    Method to display the message
     Args:
-        line (str): The line of input to retrieve the metrics.
+        dictonary_source: dict of status codes
+        file_size: total of the file
     Returns:
-        int: The total file size.
+        Nothing returns to caller func
     """
-    lineInformation = extract_input_HTTP_request(line)
-    stat_code = lineInformation.get('status_code', '0')
-    if stat_code in status_codes.keys():
-        status_codes[stat_code] += 1
-    return total_sizes + lineInformation['file_size']
-def execute():
-    """ Starts the log execuation ."""
-    line_numbers = 0
-    file_size = 0
-    codes_stats = {'200': 0, '301': 0, '400': 0, '401': 0,'403': 0,'404': 0, '405': 0,'500': 0,}
-    try:
-        while True:
-            line = input()
-            file_size = update_metrics_retrive(line, file_size, codes_stats,)
-            line_num += 1
-            if line_num % 10 == 0:
-                print_statistics_http(file_size, codes_stats)
-    except (KeyboardInterrupt, EOFError):
-        print_statistics_http(file_size, codes_stats)
+
+    print("File size: {}".format(file_size))
+    for key, value in sorted(dictonary_source.items()):
+        if value != 0:
+            print("{}: {}".format(key, value))
 
 
-if __name__ == '__main__':
-    execute()
+file_size = 0
+file_code = 0
+count = 0
+dictonary_source = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
+for lines in sys.stdin:
+        pars_line = lines.split() 
+        pars_line = pars_line[::-1]  
+
+        if len(pars_line) > 2:
+            count += 1
+
+            if count <= 10:
+                file_size += int(pars_line[0])  
+                file_code = pars_line[1]  
+
+                if (file_code in dictonary_source.keys()):
+                    dictonary_source[file_code] += 1
+
+            if (count == 10):
+                print_message(dictonary_source, file_size)
+                counter = 0
+
+print_message(dictonary_source, file_size)
