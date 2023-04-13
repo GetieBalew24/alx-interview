@@ -6,26 +6,26 @@ Input format: <IP Address> - [<date>] "GET /projects/260 HTTP/1.1"
 import sys
 
 
-def display_message(dict_sc, total_file_size):
+def display_message(dictionary_source, file_size):
     """
-    Method to print
+    Method to display
     Args:
-        dict_sc: dict of status codes
-        total_file_size: total of the file
+        dictionary_source: dict of status codes
+        file_size: total of the file
     Returns:
-        Nothing
+        Nothing to display
     """
 
-    print("File size: {}".format(total_file_size))
-    for key, val in sorted(dict_sc.items()):
+    print("File size: {}".format(file_size))
+    for key, val in sorted(dictionary_source.items()):
         if val != 0:
             print("{}: {}".format(key, val))
 
 
-total_file_size = 0
+T_file_size = 0
 code = 0
 counter = 0
-dict_sc = {"200": 0,
+dictonary_src = {"200": 0,
            "301": 0,
            "400": 0,
            "401": 0,
@@ -43,15 +43,15 @@ try:
             counter += 1
 
             if counter <= 10:
-                total_file_size += int(parsed_line[0])  # file size
+                T_file_size += int(parsed_line[0])  # file size
                 code = parsed_line[1]  # status code
 
-                if (code in dict_sc.keys()):
-                    dict_sc[code] += 1
+                if (code in dictonary_src.keys()):
+                    dictonary_src[code] += 1
 
             if (counter == 10):
-                display_message(dict_sc, total_file_size)
+                display_message(dictonary_src, T_file_size)
                 counter = 0
 
 finally:
-    display_message(dict_sc, total_file_size)
+    display_message(dictonary_src, T_file_size)
