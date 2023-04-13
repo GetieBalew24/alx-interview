@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""  a script that reads stdin line by line 
+"""  a script that reads stdin line by line and computes metrics
+Input format: <IP Address> - [<date>] "GET /projects/260 HTTP/1.1"
+<status code> <file size>
 """
 import sys
 
@@ -8,7 +10,7 @@ def print_message(dictonary_source, file_size):
     """
     Method to display the message
     Args:
-        dictonary_source: dict of status codes
+        dictonary_source: dictonary of status codes
         file_size: total of the file
     Returns:
         Nothing returns to caller func
