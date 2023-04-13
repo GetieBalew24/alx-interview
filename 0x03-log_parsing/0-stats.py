@@ -23,8 +23,8 @@ def display_message(dictionary_source, file_size):
 
 
 T_file_size = 0
-code = 0
-counter = 0
+message_code = 0
+count = 0
 dictonary_src = {"200": 0,
            "301": 0,
            "400": 0,
@@ -35,23 +35,23 @@ dictonary_src = {"200": 0,
            "500": 0}
 
 try:
-    for line in sys.stdin:
-        parsed_line = line.split()  
-        parsed_line = parsed_line[::-1] 
+    for lines in sys.stdin:
+        pars_line = lines.split()  
+        pars_line = pars_line[::-1] 
 
-        if len(parsed_line) > 2:
-            counter += 1
+        if len(pars_line) > 2:
+            count += 1
 
-            if counter <= 10:
-                T_file_size += int(parsed_line[0]) 
-                code = parsed_line[1] 
+            if count <= 10:
+                T_file_size += int(pars_line[0]) 
+                message_code = pars_line[1] 
 
-                if (code in dictonary_src.keys()):
-                    dictonary_src[code] += 1
+                if (message_code in dictonary_src.keys()):
+                    dictonary_src[message_code] += 1
 
-            if (counter == 10):
+            if (count == 10):
                 display_message(dictonary_src, T_file_size)
-                counter = 0
+                count = 0
 
 finally:
     display_message(dictonary_src, T_file_size)
