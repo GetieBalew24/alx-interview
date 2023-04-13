@@ -23,24 +23,25 @@ def print_message(dictonary_source, file_size):
 
 file_size = 0
 file_code = 0
-count = 0
+counter = 0
 dictonary_source = {"200": 0, "301": 0, "400": 0, "401": 0, "403": 0, "404": 0, "405": 0, "500": 0}
-for lines in sys.stdin:
-        pars_line = lines.split() 
-        pars_line = pars_line[::-1]  
+try:
+    for line in sys.stdin:
+        parsed_line = line.split() 
+        parsed_line = parsed_line[::-1]  
 
-        if len(pars_line) > 2:
-            count += 1
+        if len(parsed_line) > 2:
+            counter += 1
 
-            if count <= 10:
-                file_size += int(pars_line[0])  
-                file_code = pars_line[1]  
+            if counter <= 10:
+                file_size += int(parsed_line[0])  
+                file_code = parsed_line[1]  
 
                 if (file_code in dictonary_source.keys()):
                     dictonary_source[file_code] += 1
 
-            if (count == 10):
+            if (counter == 10):
                 print_message(dictonary_source, file_size)
                 counter = 0
-
-print_message(dictonary_source, file_size)
+finally:
+    print_message(dictonary_source, file_size)
