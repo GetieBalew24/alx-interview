@@ -1,9 +1,12 @@
 #!/usr/bin/python3
-
+"""  a script that reads stdin line by line and computes metrics
+Input format: <IP Address> - [<date>] "GET /projects/260 HTTP/1.1"
+<status code> <file size>
+"""
 import sys
 
 
-def print_msg(dict_sc, total_file_size):
+def display_message(dict_sc, total_file_size):
     """
     Method to print
     Args:
@@ -47,8 +50,8 @@ try:
                     dict_sc[code] += 1
 
             if (counter == 10):
-                print_msg(dict_sc, total_file_size)
+                display_message(dict_sc, total_file_size)
                 counter = 0
 
 finally:
-    print_msg(dict_sc, total_file_size)
+    display_message(dict_sc, total_file_size)
