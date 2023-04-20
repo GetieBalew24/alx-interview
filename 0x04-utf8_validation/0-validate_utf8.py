@@ -13,7 +13,7 @@ def validUTF8(data):
         if cont_byte > 0:
             cont_byte -= 1
             continue
-        if (type(data[i]) != int | data[i] < 0 | data[i] > 0x10ffff):
+        if (type(data[i]) != int or data[i] < 0 or data[i] > 0x10ffff):
             return False
         elif (data[i] <= 0x7f):
             cont_byte = 0
