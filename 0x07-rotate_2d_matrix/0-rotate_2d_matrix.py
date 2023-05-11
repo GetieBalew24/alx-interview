@@ -11,12 +11,15 @@ def rotate_2d_matrix(matrix):
     Return:
         None
     """
+    
+    
     length = len(matrix)
     for k in range(length):
         for l in range(k):
             temporary = matrix[k][l]
             matrix[k][l] = matrix[l][k]
             matrix[l][k] = temporary
+
 
     for m in range(length):
         for n in range(int(length / 2)):
