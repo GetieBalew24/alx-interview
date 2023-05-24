@@ -4,14 +4,7 @@
 
 
 def island_perimeter(grid):
-    ''' 
-    Calculates the perimeter of the island 
-    Args:
-        grid: 2d containing 0(water) or 1(land)
-    Return:
-        perimeter
-    '''
-
+ 
     perimeter = 0
     for row in range(len(grid)):
         for col in range(len(grid[row])):
